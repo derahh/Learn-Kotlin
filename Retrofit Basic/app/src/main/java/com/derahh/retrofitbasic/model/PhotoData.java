@@ -1,4 +1,4 @@
-package com.derahh.retrofitbasic;
+package com.derahh.retrofitbasic.model;
 
 import com.google.gson.annotations.SerializedName;
 
