@@ -1,7 +1,8 @@
 package com.derahh.retrofitbasic.model
 
 data class User(
-    val firtName: String,
-    val lastNAme: String,
-    val email: String
+    val username: String,
+    val name: String,
+    val email: String,
+    val phone: String
 )
