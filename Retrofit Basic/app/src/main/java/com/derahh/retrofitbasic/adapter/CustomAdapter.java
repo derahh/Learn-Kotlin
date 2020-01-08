@@ -1,4 +1,4 @@
-package com.derahh.retrofitbasic;
+package com.derahh.retrofitbasic.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.derahh.retrofitbasic.R;
 import com.derahh.retrofitbasic.model.PhotoData;
 import com.jakewharton.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
