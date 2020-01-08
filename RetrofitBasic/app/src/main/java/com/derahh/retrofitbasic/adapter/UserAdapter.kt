@@ -9,7 +9,7 @@ import com.derahh.retrofitbasic.R
 import com.derahh.retrofitbasic.model.User
 import kotlinx.android.synthetic.main.user_row.view.*
 
-class UserAdapter(private val users: MutableList<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
+class UserAdapter(private val users: List<User>) : RecyclerView.Adapter<UserAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.user_row, parent, false)
@@ -20,8 +20,8 @@ class UserAdapter(private val users: MutableList<User>) : RecyclerView.Adapter<U
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = users[position]
-        holder.firstName.text = user.firtName
-        holder.lastName.text = user.lastNAme
+        holder.firstName.text = user.username
+        holder.lastName.text = user.name
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
