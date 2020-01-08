@@ -19,11 +19,13 @@ class UserAdapter(private val users: MutableList<User>) : RecyclerView.Adapter<U
     override fun getItemCount(): Int = users.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.firstName.text = users[position].firtName
+        val user = users[position]
+        holder.firstName.text = user.firtName
+        holder.lastName.text = user.lastNAme
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val firstName: TextView = itemView.txt_first_name
+        val lastName: TextView = itemView.txt_last_name
     }
-
 }
