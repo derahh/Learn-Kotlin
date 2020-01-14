@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView tvNumber = findViewById(R.id.txt_number);
-//        MainActivityDataGenerator myData = new MainActivityDataGenerator();
-        MainActivityDataGenerator viewModel = ViewModelProviders.of(this).get(MainActivityDataGenerator.class);
+//        MainActivityViewModel myData = new MainActivityViewModel();
+        MainActivityViewModel viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         String myRandomNumber = viewModel.getNumber();
         tvNumber.setText(myRandomNumber);
         Log.i(TAG, "Random Number Set");
