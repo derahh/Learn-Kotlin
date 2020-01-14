@@ -7,6 +7,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.View;
@@ -35,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView tvNumber = findViewById(R.id.txt_number);
-        MainActivityDataGenerator myData = new MainActivityDataGenerator();
-        String myRandomNumber = myData.getNumber();
+//        MainActivityDataGenerator myData = new MainActivityDataGenerator();
+        MainActivityDataGenerator viewModel = ViewModelProviders.of(this).get(MainActivityDataGenerator.class);
+        String myRandomNumber = viewModel.getNumber();
         tvNumber.setText(myRandomNumber);
         Log.i(TAG, "Random Number Set");
     }
