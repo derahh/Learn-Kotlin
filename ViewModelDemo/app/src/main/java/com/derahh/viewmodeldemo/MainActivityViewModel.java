@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.Random;
 
-public class MainActivityDataGenerator extends ViewModel {
+public class MainActivityViewModel extends ViewModel {
 
     private String TAG = this.getClass().getSimpleName();
     private String myRandomNumber;
