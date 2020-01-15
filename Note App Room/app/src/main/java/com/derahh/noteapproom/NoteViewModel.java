@@ -6,22 +6,31 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+
+import java.util.List;
 
 public class NoteViewModel  extends AndroidViewModel {
 
     private String TAG = this.getClass().getSimpleName();
     private NoteDao noteDao;
     private NoteRoomDatabase noteDB;
+    private LiveData<List<Note>> mAllNotes;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
 
         noteDB = NoteRoomDatabase.getDatabase(application);
         noteDao = noteDB.noteDao();
+        mAllNotes = noteDao.getAllNotes();
     }
 
     public void insert(Note note) {
         new InsertAsyncTask(noteDao).execute(note);
+    }
+
+    LiveData<List<Note>> getAllNotes() {
+        return mAllNotes;
     }
 
     @Override
