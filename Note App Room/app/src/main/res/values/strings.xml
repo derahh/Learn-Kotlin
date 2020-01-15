@@ -6,4 +6,5 @@
     <string name="saved">Note Saved</string>
     <string name="not_saved">Couldn\'t Saved</string>
     <string name="no_note">No Note</string>
+    <string name="update">Note Updated</string>
 </resources>
