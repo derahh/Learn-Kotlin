@@ -37,38 +37,65 @@ public class NoteViewModel  extends AndroidViewModel {
         new UpdateAsyncTask(noteDao).execute(note);
     }
 
+    public void delete(Note note) {
+        new DeleteAssyncTask(noteDao).execute(note);
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
         Log.i(TAG, "ViewModel Destroyed");
     }
 
-    private class InsertAsyncTask extends AsyncTask<Note, Void, Void> {
+    private class OperationsAsyncTask extends AsyncTask<Note, Void, Void> {
 
-        NoteDao mNoteDao;
+        NoteDao mAsyncTaskDao;
 
-        public InsertAsyncTask(NoteDao noteDao) {
-            this.mNoteDao = noteDao;
+        OperationsAsyncTask(NoteDao dao) {
+            this.mAsyncTaskDao = dao;
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            mNoteDao.insert(notes[0]);
             return null;
         }
     }
 
-    private class UpdateAsyncTask extends AsyncTask<Note, Void, Void>{
+    private class InsertAsyncTask extends OperationsAsyncTask {
 
-        NoteDao mNoteDao;
-
-        public UpdateAsyncTask(NoteDao noteDao) {
-            this.mNoteDao = noteDao;
+        InsertAsyncTask(NoteDao noteDao) {
+            super(noteDao);
         }
 
         @Override
         protected Void doInBackground(Note... notes) {
-            mNoteDao.update(notes[0]);
+            mAsyncTaskDao.insert(notes[0]);
+            return null;
+        }
+    }
+
+    private class UpdateAsyncTask extends OperationsAsyncTask{
+
+        UpdateAsyncTask(NoteDao noteDao) {
+            super(noteDao);
+        }
+
+        @Override
+        protected Void doInBackground(Note... notes) {
+            mAsyncTaskDao.update(notes[0]);
+            return null;
+        }
+    }
+
+    private class DeleteAssyncTask extends OperationsAsyncTask {
+
+        public DeleteAssyncTask(NoteDao noteDao) {
+            super(noteDao);
+        }
+
+        @Override
+        protected Void doInBackground(Note... notes) {
+            mAsyncTaskDao.Delete(notes[0]);
             return null;
         }
     }

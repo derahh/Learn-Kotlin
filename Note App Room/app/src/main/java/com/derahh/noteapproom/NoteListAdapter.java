@@ -16,13 +16,19 @@ import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteViewHolder> {
 
+    public interface OneDeleteClickListener {
+        void OnDeleteClickListener(Note myNote);
+    }
+
     private final LayoutInflater layoutInflater;
     private Context mContext;
     private List<Note> mNotes;
+    private OneDeleteClickListener oneDeleteClickListener;
 
-    public NoteListAdapter(Context context) {
+    public NoteListAdapter(Context context, OneDeleteClickListener oneDeleteClickListener) {
         layoutInflater = LayoutInflater.from(context);
         mContext = context;
+        this.oneDeleteClickListener = oneDeleteClickListener;
     }
 
     @NonNull
@@ -88,7 +94,9 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteVi
             imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    if (oneDeleteClickListener != null) {
+                        oneDeleteClickListener.OnDeleteClickListener(mNotes.get(mPosition));
+                    }
                 }
             });
         }
