@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.database;
 
 import android.content.Context;
 
@@ -13,7 +13,7 @@ public abstract class NoteRoomDatabase extends RoomDatabase {
 
     private static volatile NoteRoomDatabase mInstance;
 
-    static NoteRoomDatabase getDatabase(final Context context) {
+    public static NoteRoomDatabase getDatabase(final Context context) {
         if (mInstance == null) {
             synchronized (NoteRoomDatabase.class) {
                 if (mInstance == null) {

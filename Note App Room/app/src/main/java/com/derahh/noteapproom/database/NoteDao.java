@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

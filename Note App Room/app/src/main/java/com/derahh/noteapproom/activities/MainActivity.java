@@ -1,8 +1,12 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.derahh.noteapproom.database.Note;
+import com.derahh.noteapproom.NoteListAdapter;
+import com.derahh.noteapproom.viewModel.NoteViewModel;
+import com.derahh.noteapproom.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.Nullable;
@@ -14,8 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import java.util.List;
@@ -25,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements NoteListAdapter.O
 
     private static final int NEW_NOTE_ACTIVITY_REQUEST_CODE = 1;
     public static final int UPDATE_NOTE_ACTIVITY_REQUEST_CODE = 2;
-    private String TAG = this.getClass().getSimpleName();
     private NoteViewModel noteViewModel;
     private NoteListAdapter noteListAdapter;
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NoteListAdapter.O
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        assert data != null;
 
         if (requestCode == NEW_NOTE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
 
@@ -86,29 +88,6 @@ public class MainActivity extends AppCompatActivity implements NoteListAdapter.O
             Toast.makeText(getApplicationContext(), R.string.not_saved, Toast.LENGTH_SHORT).show();
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public void OnDeleteClickListener(Note myNote) {
         //code to Delete operation

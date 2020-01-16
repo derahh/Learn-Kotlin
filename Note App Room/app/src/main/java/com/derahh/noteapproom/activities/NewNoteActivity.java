@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.derahh.noteapproom.R;
 
 public class NewNoteActivity extends AppCompatActivity {
 

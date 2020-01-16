@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.derahh.noteapproom.viewModel.EditNoteViewModel;
+import com.derahh.noteapproom.database.Note;
 import com.derahh.noteapproom.R;
 
 public class EditNoteActivity extends AppCompatActivity {
@@ -17,9 +19,7 @@ public class EditNoteActivity extends AppCompatActivity {
     public static final String NOTE_ID = "note_id";
     static final String UPDATED_NOTE = "note_text";
     private EditText edtUpdateNote;
-    private Bundle bundle;
     private String noteId;
-    private LiveData<Note> note;
 
     EditNoteViewModel viewModel;
 
@@ -30,13 +30,13 @@ public class EditNoteActivity extends AppCompatActivity {
 
         edtUpdateNote = findViewById(R.id.edt_upadate_note);
 
-        bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             noteId = bundle.getString("note_id");
         }
 
         viewModel = ViewModelProviders.of(this).get(EditNoteViewModel.class);
-        note = viewModel.getNote(noteId);
+        LiveData<Note> note = viewModel.getNote(noteId);
         note.observe(this, new Observer<Note>() {
             @Override
             public void onChanged(Note note) {

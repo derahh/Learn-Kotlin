@@ -12,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.derahh.noteapproom.activities.*;
+import com.derahh.noteapproom.database.Note;
+
 import java.util.List;
 
 public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteViewHolder> {
@@ -64,25 +67,25 @@ public class NoteListAdapter extends RecyclerView.Adapter<NoteListAdapter.NoteVi
         notifyDataSetChanged();
     }
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder{
+    class NoteViewHolder extends RecyclerView.ViewHolder{
 
         private TextView tvNote;
         private int mPosition;
         private ImageView imgDelete, imgEdit;
 
-        public NoteViewHolder(@NonNull View itemView) {
+        NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             tvNote = itemView.findViewById(R.id.tv_note);
             imgDelete = itemView.findViewById(R.id.img_delete);
             imgEdit = itemView.findViewById(R.id.img_edit);
         }
 
-        public void setData(String note, int position) {
+        void setData(String note, int position) {
             tvNote.setText(note);
             mPosition = position;
         }
 
-        public void setListener() {
+        void setListener() {
             imgEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

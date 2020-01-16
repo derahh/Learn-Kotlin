@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.viewModel;
 
 import android.app.Application;
 import android.util.Log;
@@ -7,16 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.derahh.noteapproom.database.Note;
+import com.derahh.noteapproom.database.NoteDao;
+import com.derahh.noteapproom.database.NoteRoomDatabase;
+
 public class EditNoteViewModel extends AndroidViewModel {
 
-    private String TAG = this.getClass().getSimpleName();
     private NoteDao noteDao;
-    private NoteRoomDatabase db;
 
     public EditNoteViewModel(@NonNull Application application) {
         super(application);
+        String TAG = this.getClass().getSimpleName();
         Log.i(TAG, "Edit ViewModel");
-        db = NoteRoomDatabase.getDatabase(application);
+        NoteRoomDatabase db = NoteRoomDatabase.getDatabase(application);
         noteDao = db.noteDao();
     }
 

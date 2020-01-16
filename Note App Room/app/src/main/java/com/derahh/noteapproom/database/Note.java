@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

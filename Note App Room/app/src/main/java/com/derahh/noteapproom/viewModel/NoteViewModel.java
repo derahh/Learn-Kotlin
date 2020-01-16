@@ -1,4 +1,4 @@
-package com.derahh.noteapproom;
+package com.derahh.noteapproom.viewModel;
 
 import android.app.Application;
 import android.os.AsyncTask;
@@ -8,19 +8,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.derahh.noteapproom.database.Note;
+import com.derahh.noteapproom.database.NoteDao;
+import com.derahh.noteapproom.database.NoteRoomDatabase;
+
 import java.util.List;
 
 public class NoteViewModel  extends AndroidViewModel {
 
     private String TAG = this.getClass().getSimpleName();
     private NoteDao noteDao;
-    private NoteRoomDatabase noteDB;
     private LiveData<List<Note>> mAllNotes;
 
     public NoteViewModel(@NonNull Application application) {
         super(application);
 
-        noteDB = NoteRoomDatabase.getDatabase(application);
+        NoteRoomDatabase noteDB = NoteRoomDatabase.getDatabase(application);
         noteDao = noteDB.noteDao();
         mAllNotes = noteDao.getAllNotes();
     }
@@ -29,7 +32,7 @@ public class NoteViewModel  extends AndroidViewModel {
         new InsertAsyncTask(noteDao).execute(note);
     }
 
-    LiveData<List<Note>> getAllNotes() {
+    public LiveData<List<Note>> getAllNotes() {
         return mAllNotes;
     }
 
@@ -89,7 +92,7 @@ public class NoteViewModel  extends AndroidViewModel {
 
     private class DeleteAssyncTask extends OperationsAsyncTask {
 
-        public DeleteAssyncTask(NoteDao noteDao) {
+        DeleteAssyncTask(NoteDao noteDao) {
             super(noteDao);
         }
 
