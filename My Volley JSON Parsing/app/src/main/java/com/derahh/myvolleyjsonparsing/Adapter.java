@@ -18,9 +18,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
     private Context mContext;
     private ArrayList<Model> listData;
+    private OnItemClickListener mListener;
 
-    public Adapter(Context context, ArrayList<Model> listData) {
-        this.mContext = context;
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    Adapter(Context context, ArrayList<Model> listData) {
+        mContext = context;
         this.listData = listData;
     }
 
@@ -61,6 +70,18 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             imageView = itemView.findViewById(R.id.image_view);
             tvCreator = itemView.findViewById(R.id.tv_creator);
             tvLikes = itemView.findViewById(R.id.tv_downloads);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
