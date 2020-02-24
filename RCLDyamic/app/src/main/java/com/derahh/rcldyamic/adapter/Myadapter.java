@@ -62,8 +62,8 @@ public class Myadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                     if (loadMore != null)
                         loadMore.onLoadMore();
+                    isLoading = true;
                 }
-                isLoading = true;
             }
         });
     }
@@ -96,7 +96,7 @@ public class Myadapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             Item item = items.get(position);
             ItemViewHolder viewHolder = (ItemViewHolder) holder;
             viewHolder.tvName.setText(item.getName());
-            viewHolder.tvLength.setText(item.getLength());
+            viewHolder.tvLength.setText(String.valueOf(item.getLength()));
         }
     }
 
